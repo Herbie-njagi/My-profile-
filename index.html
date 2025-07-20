@@ -1,56 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Herbert Njagi</title>
+  <title>Herbert Njagi - Personal Website</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <!-- Navigation -->
+<body>
+  <div class="background-slideshow"></div>
+  <header>
+    <img src="assets/yourphoto.jpg" alt="Herbert Njagi">
+    <h1><span id="typing-text"></span></h1>
+    <p>Innovator | Author | Developer</p>
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+  </header>
+
   <nav>
     <ul>
-      <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#purpose">Purpose</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Home Section -->
-  <header id="home">
-    <img src="IMG_20240719_204717_625.jpg" alt="Your Photo" />
-    <h1>Herbert Njagi</h1>
-    <p>Innovator • Tech Enthusiast • Author</p>
-  </header>
-
-  <!-- About Section -->
   <section id="about">
     <h2>About Me</h2>
-    <p>I am passionate about technology, innovation, and transforming lives through creativity and purpose. From launching health tech like RV Scan to developing next-gen security with Ground Snitch, I aim to impact the world positively.</p>
-
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Ground Snitch Security</strong> - AI security surveillance system</li>
-      <li><strong>RentEase</strong> - Smart rent collection platform</li>
-      <li><strong>RV Scan</strong> - Kidney disease diagnosis technology</li>
-      <li><strong>ShachahWave Church Website</strong> - Bible programs & discipleship</li>
-    </ul>
+    <p>I am Herbert Njagi, a passionate innovator, author of "Unveiling Purpose," and founder of Ground Snitch Security, RentEase, and RV Scan.</p>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact Me</h2>
-    <p>You can reach out via the platforms below:</p>
-    <a href="mailto:herbertnjagi24@gmail.com">Email</a>
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-    <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
+  <section id="blog">
+    <h2>Blog</h2>
+    <article>
+      <h3>Finding Purpose in Chaos</h3>
+      <p>Learn how to discover your true calling even in the midst of confusion and distractions.</p>
+    </article>
+    <article>
+      <h3>Tech for Impact</h3>
+      <p>How my innovations are changing lives and why solving problems is the new success.</p>
+    </article>
   </section>
 
-  <!-- Footer -->
+  <section id="purpose" class="purpose-section fade-in">
+    <h2>PURPOSE</h2>
+    <div class="purpose-content">
+      <p><strong>"Purpose is not just a direction—it’s a destiny whispered by God into your spirit."</strong></p>
+      <p>In life, we are often distracted by trends, trapped by comparison, and slowed by fear. But purpose is the compass that redirects us. It defines not only where you're going, but why you’re here.</p>
+      <p>Every vision I’ve birthed—Ground Snitch, RentEase, RV Scan, this website—was rooted in one question: “What was I born to solve?”</p>
+      <p>You are not random. You are a strategy. A response to a problem in the earth. Walk in it boldly.</p>
+      <p style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;">“Purpose gives pain a platform and failure a function.”</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: herbertnjagi24@gmail.com</p>
+    <p>Phone: 0114179346</p>
+  </section>
+
   <footer>
-    &copy; 2025 Herbert Njagi. All rights reserved.
+    <p>&copy; 2025 Herbert Njagi. All rights reserved.</p>
   </footer>
 
+  <script>
+    const texts = ["Welcome to My World", "Author of Unveiling Purpose", "Founder of Ground Snitch Security", "Tech Innovator"];
+    let i = 0, j = 0, currentText = "", isDeleting = false;
+    function typeEffect() {
+      const textDisplay = document.getElementById("typing-text");
+      if (i < texts.length) {
+        if (!isDeleting && j <= texts[i].length) {
+          currentText = texts[i].substring(0, j++);
+        }
+        if (isDeleting && j >= 0) {
+          currentText = texts[i].substring(0, j--);
+        }
+        textDisplay.innerHTML = currentText;
+        if (j === texts[i].length) isDeleting = true;
+        if (isDeleting && j === 0) {
+          isDeleting = false;
+          i = (i + 1) % texts.length;
+        }
+        setTimeout(typeEffect, 100);
+      }
+    }
+    typeEffect();
+
+    const toggle = document.getElementById("darkModeToggle");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  </script>
 </body>
+
 </html>
