@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Purpose - Herbert Njagi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="purpose.html" class="active">Purpose</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button id="darkToggle">🌓</button></li>
+    </ul>
+  </nav>
+
+  <section class="purpose-section">
+    <h1 class="big-purpose-text"> PURPOSE </h1>
+    <p class="purpose-description">
+      Purpose is not something you find by chance — it's something you uncover with intention.
+      <br><br>
+      My mission is to spark destiny in hearts that are lost, confused, or simply waiting for ignition. Through my life, my writing, and my work, I aim to remind everyone: you were created for something greater. 
+      <br><br>
+      Don’t settle. Don’t wander aimlessly. Embrace the calling. Become the spark!
+    </p>
+  </section>
+
+  <script>
+    document.getElementById("darkToggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  </script>
+
+  <footer>
+    <p>&copy; 2025 Herbert Njagi. All rights reserved.</p>
+  </footer>
+</body>
+</html>
