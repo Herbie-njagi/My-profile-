@@ -1,75 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Herbert Njagi - Personal Website</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herbert Njagi</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="background-slideshow"></div>
-  <header>
-    <img src="assets/yourphoto.jpg" alt="Herbert Njagi">
-    <h1><span id="typing-text"></span></h1>
-    <p>Innovator | Author | Developer</p>
-    <button id="darkModeToggle">Toggle Dark Mode</button>
-  </header>
-
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="purpose.html">Purpose</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li><button id="darkToggle">🌓</button></li>
     </ul>
   </nav>
 
-  <section id="purpose" class="purpose-section fade-in">
-    <h2>PURPOSE</h2>
-    <div class="purpose-content">
-      <p><strong>"Purpose is not just a direction—it’s a destiny whispered by God into your spirit."</strong></p>
-      <p>In life, we are often distracted by trends, trapped by comparison, and slowed by fear. But purpose is the compass that redirects us. It defines not only where you're going, but why you’re here.</p>
-      <p>Every vision I’ve birthed—Ground Snitch, RentEase, RV Scan, this website—was rooted in one question: “What was I born to solve?”</p>
-      <p>You are not random. You are a strategy. A response to a problem in the earth. Walk in it boldly.</p>
-      <p style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;">“Purpose gives pain a platform and failure a function.”</p>
+  <div class="background-slideshow">
+    <img src="myphoto.jpg" class="bg-image" style="opacity: 0.6;" alt="Herbert Njagi">
+    <img src="bg1.jpg" class="bg-image" alt="Background 1">
+    <img src="bg2.jpg" class="bg-image" alt="Background 2">
+    <img src="bg3.jpg" class="bg-image" alt="Background 3">
+  </div>
+
+  <header class="hero">
+    <div class="typing-text">
+      <h1>Hi, I'm Herbert Njagi</h1>
+      <h2><span id="typing"></span></h2>
     </div>
-  </section>
+  </header>
+
+  <script>
+    const phrases = ["Innovator", "Developer", "Author", "Visionary"];
+    let index = 0, charIndex = 0;
+    const typingElement = document.getElementById("typing");
+
+    function type() {
+      if (charIndex < phrases[index].length) {
+        typingElement.textContent += phrases[index].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 150);
+      } else {
+        setTimeout(erase, 2000);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        typingElement.textContent = phrases[index].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 100);
+      } else {
+        index = (index + 1) % phrases.length;
+        setTimeout(type, 500);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (phrases.length) type();
+
+      const toggle = document.getElementById("darkToggle");
+      toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+
+      let slides = document.querySelectorAll('.bg-image');
+      let current = 0;
+      setInterval(() => {
+        slides.forEach((slide, i) => {
+          slide.style.opacity = i === current ? '0.6' : '0';
+        });
+        current = (current + 1) % slides.length;
+      }, 5000);
+    });
+  </script>
 
   <footer>
     <p>&copy; 2025 Herbert Njagi. All rights reserved.</p>
   </footer>
-
-  <script>
-    const texts = ["Welcome to My World", "Author of Unveiling Purpose", "Founder of Ground Snitch Security", "Tech Innovator"];
-    let i = 0, j = 0, currentText = "", isDeleting = false;
-    function typeEffect() {
-      const textDisplay = document.getElementById("typing-text");
-      if (i < texts.length) {
-        if (!isDeleting && j <= texts[i].length) {
-          currentText = texts[i].substring(0, j++);
-        }
-        if (isDeleting && j >= 0) {
-          currentText = texts[i].substring(0, j--);
-        }
-        textDisplay.innerHTML = currentText;
-        if (j === texts[i].length) isDeleting = true;
-        if (isDeleting && j === 0) {
-          isDeleting = false;
-          i = (i + 1) % texts.length;
-        }
-        setTimeout(typeEffect, 100);
-      }
-    }
-    typeEffect();
-
-    const toggle = document.getElementById("darkModeToggle");
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-    });
-  </script>
 </body>
-
 </html>
